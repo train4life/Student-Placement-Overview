@@ -24,25 +24,25 @@ Before running the SQL analytics, the raw dataset student_placement_skills_2025 
 
 SQL Queries:
 
-# Inspecting the Table
-SELECT *
+### Inspecting the Table
+<SELECT *
 FROM student_placement_skills_2025
 LIMIT 10;
 
-# Selecting high-performers who scored above 80 in ALL three skill categories to find high achievers
+### Selecting high-performers who scored above 80 in ALL three skill categories to find high achievers
 SELECT Student_Id, CGPA, Placement_Offer
 FROM student_placement_skills_2025
 WHERE Technical_Skills_Score_100 > 80
   AND Communication_Skills_Score_100 > 80
   AND Aptitude_Test_Score_100 > 80;
 
-# Selecting the average salary offered by Gender and viewing major discrepancies
+### Selecting the average salary offered by Gender and viewing major discrepancies
 SELECT gender, age, ROUND(AVG(Salary_Offered_USD), 2) AS avg_salary_offered
 FROM student_placement_skills_2025
 GROUP BY 1, 2
 ORDER BY 2, 1;
 
-# Finding degrees with an average salary greater than 11,000
+### Finding degrees with an average salary greater than 11,000
 SELECT 
     Degree, 
     COUNT(Student_Id) AS Total_Students,
@@ -53,7 +53,7 @@ GROUP BY Degree
 HAVING AVG(Salary_Offered_USD) > 11000
 ORDER BY Average_Salary DESC;
 
-# Ranking students by GPA within their respective degrees and only taking the top 10
+### Ranking students by GPA within their respective degrees and only taking the top 10
 WITH ranking_system AS (SELECT 
     Student_Id, 
     Degree, 
@@ -64,7 +64,7 @@ SELECT *
 FROM ranking_system 
 WHERE Rank_In_Degree <= 10;
 
-# Comparing each student's salary to the student ranked immediately below them
+### Comparing each student's salary to the student ranked immediately below them
 WITH salary_drop AS (SELECT 
     Student_Id, 
     Salary_Offered_USD,
@@ -77,7 +77,7 @@ SELECT Student_Id, Salary_Offered_USD, Next_Higher_Salary, ROUND(Salary_Drop_Off
 	ROUND((Next_Higher_Salary - Salary_Offered_USD)/Next_Higher_Salary, 3) AS pct_change
 FROM salary_drop;
 
-# Analyzing the impact of 'Extra' activities on Salary
+### Analyzing the impact of 'Extra' activities on Salary
 SELECT 
     Internships_Count,
     Certifications_Count,
@@ -87,7 +87,7 @@ FROM student_placement_skills_2025
 GROUP BY Internships_Count, Certifications_Count
 ORDER BY Internships_Count DESC, Certifications_Count DESC;
 
-# Categorizing students into talent profiles
+### Categorizing students into talent profiles
 SELECT 
     Student_Id,
     Degree,
@@ -100,7 +100,7 @@ SELECT
     Salary_Offered_USD
 FROM student_placement_skills_2025;
 
-# Comparing individual salary to the global average and calculating a running total
+### Comparing individual salary to the global average and calculating a running total
 SELECT 
     Student_Id,
     Degree,
