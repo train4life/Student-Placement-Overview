@@ -43,8 +43,7 @@ GROUP BY 1, 2
 ORDER BY 2, 1;
 
 ### Finding degrees with an average salary greater than 11,000
-SELECT 
-    Degree, 
+``` sql SELECT Degree,
     COUNT(Student_Id) AS Total_Students,
     AVG(Salary_Offered_USD) AS Average_Salary
 FROM student_placement_skills_2025
@@ -130,4 +129,11 @@ Engineered custom calculations for Averages and Medians, providing a more robust
 Salary vs. GPA Correlation: Leveraged a Circle View (Dot Plot) to map individual student placement success.
 
 Why this chart? By plotting Salary against GPA levels, this visual highlights clusters of high-performers and identifies outliers—such as students with lower GPAs who secured high-tier salaries due to superior technical scores.
+
+Based on the multi-stage analysis performed across Excel, SQL, and Tableau, the following trends were identified:
+	1. The "Skill-Over-GPA" PhenomenonFinding: The Tableau Circle View revealed that while a high CGPA, generally guarantees a placement offer, it does not always guarantee the highest salary.
+	2. Certification & Internship Multiplier - Finding: The SQL aggregation showed a "diminishing returns" point for certifications. Insight: Having 2-3 high-quality certifications coupled with 2 internships resulted in the highest salary offers. Students with 5+ certifications without internships saw a lower conversion rate into high-paying roles.
+	3. Gender Representation in Technical Roles - Finding: Using the Gender Parameter in Tableau, it was observed that gender distribution was relatively balanced across all degree types. Insight: However, in the top 10% of salary brackets, there was a slight trend toward students who scored higher in Communication Skills, regardless of gender, highlighting the "Soft Skill Premium" in leadership-track roles.
+
+Final Project Conclusion:  This project demonstrates that in 2025, the most successful candidates are professionals with a broad base of communication and aptitude, and also a deep, specialized pillar of technical expertise.
 
