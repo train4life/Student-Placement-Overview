@@ -25,7 +25,7 @@ Before running the SQL analytics, the raw dataset student_placement_skills_2025 
 SQL Queries:
 
 ### Inspecting the Table
-<SELECT *
+``` SELECT *
 FROM student_placement_skills_2025
 LIMIT 10;
 
@@ -43,7 +43,7 @@ GROUP BY 1, 2
 ORDER BY 2, 1;
 
 ### Finding degrees with an average salary greater than 11,000
-``` sql SELECT Degree,
+SELECT Degree,
     COUNT(Student_Id) AS Total_Students,
     AVG(Salary_Offered_USD) AS Average_Salary
 FROM student_placement_skills_2025
@@ -109,6 +109,7 @@ SELECT
     ROUND(SUM(Salary_Offered_USD) OVER(ORDER BY Salary_Offered_USD DESC), 2) AS Running_Total_Salary_Pool
 FROM student_placement_skills_2025
 WHERE Placement_Offer = 'Yes';
+```
 
 Tableau Link:
 [Student Placement Overview](https://public.tableau.com/app/profile/chris.smith5081/viz/StudentPlacement_17715112372010/Dashboard1)
